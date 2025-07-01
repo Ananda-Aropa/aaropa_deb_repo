@@ -48,6 +48,8 @@ jobs:
             https://github.com/shadichy/grub-android-x86/releases/latest/download
             https://github.com/shadichy/refind-files-i386/releases/latest/download
             https://github.com/shadichy/efifs-debian/releases/latest/download
+            https://github.com/shadichy/linux-zenith/releases/latest/download
+            https://github.com/shadichy/initrd-aaropa-linux/releases/latest/download
       
       - name: Extract artifact
         run: unzip -o dist.zip
