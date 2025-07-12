@@ -1,16 +1,6 @@
 name: Deploy github pages for repo
 
 on:
-  schedule:
-    - cron: "0 6 15 * *"
-  push:
-    branches:
-      - main
-    tags:
-      - "*"
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
@@ -31,25 +21,30 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Build repository
-        uses: DevChall-by-SDCY-and-VXM/build-deb-repo@main
+        uses: Ananda-Aropa/build-deb-repo@main
         with:
-          label: BlissOS debian repo
+          label: Ananda-Aropa debian repo
           origin: blisslabs.org
-          desc: BlissOS Debian buildiso repo
+          desc: Ananda-Aropa Debian repo
           gpg_signing_key: "${{ secrets.GPG_SIGNING_KEY }}"
           max_download_retries: 10
           download_retry_wait: 30
           from_metadatas: |
-            https://github.com/BlissOS/aaropa_busybox/releases/latest/download
-            https://github.com/BlissOS/grub2-themes/releases/latest/download
-            https://github.com/shadichy/patches-calamares-blissos/releases/latest/download
-            https://github.com/shadichy/calamares_branding_blissos/releases/latest/download
-            https://github.com/shadichy/android-tools/releases/latest/download
-            https://github.com/shadichy/grub-android-x86/releases/latest/download
-            https://github.com/shadichy/refind-files-i386/releases/latest/download
-            https://github.com/shadichy/efifs-debian/releases/latest/download
-            https://github.com/shadichy/linux-zenith/releases/latest/download
-            https://github.com/shadichy/initrd-aaropa-linux/releases/latest/download
+            https://github.com/Ananda-Aropa/grub-android-prober/releases/latest/download
+            https://github.com/Ananda-Aropa/grub2-themes/releases/latest/download
+            https://github.com/Ananda-Aropa/efifs-debian/releases/latest/download
+            https://github.com/Ananda-Aropa/refind-files-i386/releases/latest/download
+            https://github.com/Ananda-Aropa/aaropa_busybox/releases/latest/download
+            https://github.com/Ananda-Aropa/aaropa_calamares/releases/latest/download
+            https://github.com/Ananda-Aropa/aaropa_calamares_modules_bass/releases/latest/download
+            https://github.com/Ananda-Aropa/calamares_branding_bassos/releases/latest/download
+            https://github.com/Ananda-Aropa/calamares_branding_blissos/releases/latest/download
+            https://github.com/Ananda-Aropa/calamares_branding_lineageos/releases/latest/download
+            https://github.com/Ananda-Aropa/aaropa_keyring/releases/latest/download
+            https://github.com/Ananda-Aropa/android-tools/releases/latest/download
+            https://github.com/Ananda-Aropa/clang-android-debian/releases/latest/download
+            https://github.com/Ananda-Aropa/linux-zenith/releases/latest/download
+            https://github.com/Ananda-Aropa/initrd-aaropa-linux/releases/latest/download
       
       - name: Extract artifact
         run: unzip -o dist.zip
