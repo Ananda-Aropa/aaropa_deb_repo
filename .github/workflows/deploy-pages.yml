@@ -3,6 +3,11 @@ name: Deploy github pages for repo
 on:
   workflow_dispatch:
 
+env:
+  REF: ${{ github.ref }}
+  AUTHOR: ${{ secrets.RELEASE_USERNAME }}
+  PAT: ${{ secrets.RELEASE_TOKEN }}
+
 jobs:
   build-and-deploy:
     permissions:
@@ -57,3 +62,15 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Trigger Workflow after deployment
+        uses: convictional/trigger-workflow-and-wait@v1.6.5
+        with:
+          owner: Ananda-Aropa
+          repo: aaropa_rootfs_base
+          github_token: ${{ env.PAT }}
+          github_user: ${{ env.AUTHOR }}
+          workflow_file_name: build_rootfs.yml
+          ref: latest
+          trigger_workflow: true
+          wait_workflow: false
