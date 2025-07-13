@@ -71,8 +71,8 @@ jobs:
         with:
           owner: Ananda-Aropa
           repo: aaropa_rootfs_base
-          GH_token: ${{ env.PAT }}
-          GH_user: ${{ env.AUTHOR }}
+          github_token: ${{ env.PAT }}
+          github_user: ${{ env.AUTHOR }}
           workflow_file_name: build_rootfs.yml
           ref: latest
           trigger_workflow: true
