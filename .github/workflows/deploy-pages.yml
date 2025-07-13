@@ -7,6 +7,9 @@ env:
   REF: ${{ github.ref }}
   AUTHOR: ${{ secrets.RELEASE_USERNAME }}
   PAT: ${{ secrets.RELEASE_TOKEN }}
+  GH_ORIGIN: https://github.com
+  ORG: Ananda-Aropa
+  GH_RLS_PATH: releases/latest/download
 
 jobs:
   build-and-deploy:
@@ -35,21 +38,21 @@ jobs:
           max_download_retries: 10
           download_retry_wait: 30
           from_metadatas: |
-            https://github.com/Ananda-Aropa/grub-android-prober/releases/latest/download
-            https://github.com/Ananda-Aropa/grub2-themes/releases/latest/download
-            https://github.com/Ananda-Aropa/efifs-debian/releases/latest/download
-            https://github.com/Ananda-Aropa/refind-files-i386/releases/latest/download
-            https://github.com/Ananda-Aropa/aaropa_busybox/releases/latest/download
-            https://github.com/Ananda-Aropa/aaropa_calamares/releases/latest/download
-            https://github.com/Ananda-Aropa/aaropa_calamares_modules_bass/releases/latest/download
-            https://github.com/Ananda-Aropa/calamares_branding_bassos/releases/latest/download
-            https://github.com/Ananda-Aropa/calamares_branding_blissos/releases/latest/download
-            https://github.com/Ananda-Aropa/calamares_branding_lineageos/releases/latest/download
-            https://github.com/Ananda-Aropa/aaropa_keyring/releases/latest/download
-            https://github.com/Ananda-Aropa/android-tools/releases/latest/download
-            https://github.com/Ananda-Aropa/clang-android-debian/releases/latest/download
-            https://github.com/Ananda-Aropa/linux-zenith/releases/latest/download
-            https://github.com/Ananda-Aropa/initrd-aaropa-linux/releases/latest/download
+            ${{ env.GH_ORIGIN }}/${{ env.ORG }}/grub-android-prober/${{ env.GH_RLS_PATH }}
+            ${{ env.GH_ORIGIN }}/${{ env.ORG }}/grub2-themes/${{ env.GH_RLS_PATH }}
+            ${{ env.GH_ORIGIN }}/${{ env.ORG }}/efifs-debian/${{ env.GH_RLS_PATH }}
+            ${{ env.GH_ORIGIN }}/${{ env.ORG }}/refind-files-i386/${{ env.GH_RLS_PATH }}
+            ${{ env.GH_ORIGIN }}/${{ env.ORG }}/aaropa_busybox/${{ env.GH_RLS_PATH }}
+            ${{ env.GH_ORIGIN }}/${{ env.ORG }}/aaropa_calamares/${{ env.GH_RLS_PATH }}
+            ${{ env.GH_ORIGIN }}/${{ env.ORG }}/aaropa_calamares_modules_bass/${{ env.GH_RLS_PATH }}
+            ${{ env.GH_ORIGIN }}/${{ env.ORG }}/calamares_branding_bassos/${{ env.GH_RLS_PATH }}
+            ${{ env.GH_ORIGIN }}/${{ env.ORG }}/calamares_branding_blissos/${{ env.GH_RLS_PATH }}
+            ${{ env.GH_ORIGIN }}/${{ env.ORG }}/calamares_branding_lineageos/${{ env.GH_RLS_PATH }}
+            ${{ env.GH_ORIGIN }}/${{ env.ORG }}/aaropa_keyring/${{ env.GH_RLS_PATH }}
+            ${{ env.GH_ORIGIN }}/${{ env.ORG }}/android-tools/${{ env.GH_RLS_PATH }}
+            ${{ env.GH_ORIGIN }}/${{ env.ORG }}/clang-android-debian/${{ env.GH_RLS_PATH }}
+            ${{ env.GH_ORIGIN }}/${{ env.ORG }}/linux-zenith/${{ env.GH_RLS_PATH }}
+            ${{ env.GH_ORIGIN }}/${{ env.ORG }}/initrd-aaropa-linux/${{ env.GH_RLS_PATH }}
       
       - name: Extract artifact
         run: unzip -o dist.zip
@@ -68,8 +71,8 @@ jobs:
         with:
           owner: Ananda-Aropa
           repo: aaropa_rootfs_base
-          github_token: ${{ env.PAT }}
-          github_user: ${{ env.AUTHOR }}
+          GH_token: ${{ env.PAT }}
+          GH_user: ${{ env.AUTHOR }}
           workflow_file_name: build_rootfs.yml
           ref: latest
           trigger_workflow: true
