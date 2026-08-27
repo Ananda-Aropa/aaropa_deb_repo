@@ -53,6 +53,7 @@ jobs:
             ${{ env.GH_ORIGIN }}/${{ env.ORG }}/clang-android-debian/${{ env.GH_RLS_PATH }}
             ${{ env.GH_ORIGIN }}/${{ env.ORG }}/linux-zenith/${{ env.GH_RLS_PATH }}
             ${{ env.GH_ORIGIN }}/${{ env.ORG }}/initrd-aaropa-linux/${{ env.GH_RLS_PATH }}
+            ${{ env.GH_ORIGIN }}/${{ env.ORG }}/qarma/${{ env.GH_RLS_PATH }}
       
       - name: Extract artifact
         run: unzip -o dist.zip
